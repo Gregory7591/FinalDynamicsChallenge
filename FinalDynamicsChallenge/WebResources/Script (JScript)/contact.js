@@ -1,10 +1,8 @@
-﻿function validatePreferredMethodOfCommunication() {
+﻿function trigger() {
+
   //get the value of Preffered Method of Communication code 
-
-
   var prefferedContactMethodCode =
     Xrm.Page.getAttribute('preferredcontactmethodcode').getValue();
-
 
   //if Preferred Method = Any, make all fields as non-mandatory 
 
@@ -19,20 +17,22 @@
   }
   if (prefferedContactMethodCode == 2) {
     clearAllMandatoryFields();
-    Xrm.Page.getAttribute("emailaddress1").setRequiredLevel("required");
+    Xrm.Page.getAttribute('emailaddress1').setRequiredLevel('required');
   } else if (prefferedContactMethodCode == 3) {
     clearAllMandatoryFields();
-    Xrm.Page.getAttribute("mobilephone").setRequiredLevel("required");
+    Xrm.Page.getAttribute('mobilephone').setRequiredLevel('required');
   } else if (prefferedContactMethodCode == 4) {
     clearAllMandatoryFields();
-    Xrm.Page.getAttribute("fax").setRequiredLevel("required");
+    Xrm.Page.getAttribute('fax').setRequiredLevel('required');
   }
-}
+  else if (prefferedContactMethodCode == 5) {
+    clearAllMandatoryFields();
+  }
+  function clearAllMandatoryFields() {
 
-function clearAllMandatoryFields() {
-
-  //clear all mandatory fields 
-  Xrm.Page.getAttribute("emailaddress1").setRequiredLevel("none");
-  Xrm.Page.getAttribute("mobilephone").setRequiredLevel("none");
-  Xrm.Page.getAttribute("fax").setRequiredLevel("none");
+    //clear all mandatory fields 
+    Xrm.Page.getAttribute('emailaddress1').setRequiredLevel('none');
+    Xrm.Page.getAttribute('mobilephone').setRequiredLevel('none');
+    Xrm.Page.getAttribute('fax').setRequiredLevel('none');
+  }
 }

@@ -52,6 +52,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <CRMWebResource Include="WebResources\Script %28JScript%29\contact.js">
+      <DisplayName>contact</DisplayName>
+      <UniqueName>di_contact</UniqueName>
+      <WebResourceType>Script</WebResourceType>
+    </CRMWebResource>
     <CRMWebResource Include="WebResources\Script %28JScript%29\prefMethodContact.js">
       <DisplayName>prefMethodContact</DisplayName>
       <UniqueName>di_prefMethodContact</UniqueName>
