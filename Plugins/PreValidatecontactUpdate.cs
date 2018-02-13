@@ -10,6 +10,7 @@
 // </auto-generated>
 
 using System;
+using System.ServiceModel;
 using Microsoft.Xrm.Sdk;
 
 namespace FinalDynamicsChallenge.Plugins
@@ -18,7 +19,7 @@ namespace FinalDynamicsChallenge.Plugins
   /// <summary>
   /// PreValidatecontactUpdate Plugin.
   /// </summary>    
-  public class PreValidatecontactUpdate : PluginBase
+  public class PreValidatecontactUpdate :IPlugin
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="PreValidatecontactUpdate"/> class.
@@ -27,18 +28,12 @@ namespace FinalDynamicsChallenge.Plugins
     /// <param name="secure">Contains non-public (secured) configuration information. 
     /// When using Microsoft Dynamics 365 for Outlook with Offline Access, 
     /// the secure string is not passed to a plug-in that executes while the client is offline.</param>
-    public PreValidatecontactUpdate(string unsecure, string secure)
-        : base(typeof(PreValidatecontactUpdate))
-    {
-      
-      // TODO: Implement your custom configuration handling.
-    }
-
+    
     public new void Execute(IServiceProvider serviceProvider)
     {
       ITracingService tracingService = (ITracingService)serviceProvider.GetService(typeof(ITracingService));
 
-      IOrganizationServiceFactory serviceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
+      //IOrganizationServiceFactory serviceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
 
 
 
@@ -50,12 +45,16 @@ namespace FinalDynamicsChallenge.Plugins
         Entity contact = (Entity)context.InputParameters["Target"];
         if (contact.LogicalName == "contact")
         {
+
+          IOrganizationServiceFactory serviceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
+          IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
+
           try
           {
+            // contact["di_age"] = DateTime.Now.Date - (DateTime)contact["birthdate"]; // work out the age of client
+            contact["di_age"] = 52;
 
-
-           // contact["di_age"] = DateTime.Now.Date - (DateTime)contact["birthdate"]; // work out the age of client
-           contact["di_age"]= 52;
+            service.Update(contact);
             contact["di_maturity_date"] = DateTime.Now.Date.AddMonths((int)(contact["di_investmentperiod"]));//work out the maturity date assming joining date is the date account created
 
             contact["di_estimated_return"] = (int)contact["di_intial_investment"] * (1 + (double)contact["di_investmentperiod"] * (double)contact["di_interest_rate"]);
@@ -71,15 +70,21 @@ namespace FinalDynamicsChallenge.Plugins
 
           }
 
-          catch
+          catch (FaultException<OrganizationServiceFault> ex)
           {
-
+            throw new InvalidPluginExecutionException("An error occurred in MyPlug-in.", ex);
           }
-        }
+          catch (Exception ex)
+          {
+            tracingService.Trace("MyPlugin: {0}", ex.ToString());
+            throw;
+          }
 
+
+        }
       }
 
-      IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
+
 
 
 
@@ -104,15 +109,7 @@ namespace FinalDynamicsChallenge.Plugins
     /// could execute the plug-in at the same time. All per invocation state information
     /// is stored in the context. This means that you should not use global variables in plug-ins.
     /// </remarks>
-    protected override void ExecuteCrmPlugin(LocalPluginContext localContext)
-    {
-      if (localContext == null)
-      {
-        throw new InvalidPluginExecutionException("localContext");
-      }
-
-      // TODO: Implement your custom Plug-in business logic.
-    }
+    
   }
 }
 
