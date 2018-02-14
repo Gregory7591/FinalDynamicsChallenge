@@ -99,9 +99,9 @@ namespace FinalDynamicsChallenge.contactsPlugin
             contact["di_maturity_date"] = DateTime.Now.Date.AddMonths((int)(contact["di_investmentperiod"]));
 
             tracingService.Trace("Contact Plugin: Maturity date worked out");
-            decimal p = (decimal)contact.GetAttributeValue<decimal>("di_intialinvesmentfinal");
+            decimal p = contact.GetAttributeValue<decimal>("di_intialinvesmentfinal");
 
-            decimal r = (decimal)contact.GetAttributeValue<decimal>("di_interest_rate") / 100;
+            decimal r = contact.GetAttributeValue<decimal>("di_interest_rate") / 100;
 
             decimal t = (decimal)contact.GetAttributeValue<int>("di_investmentperiod");
             contact["di_esitimatedreturnfinal"] = p * (1 + (r * t));
