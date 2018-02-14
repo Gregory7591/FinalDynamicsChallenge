@@ -60,7 +60,7 @@ namespace FinalDynamicsChallenge.contactsPlugin
 
 
       IPluginExecutionContext context = localContext.PluginExecutionContext;
-      
+
 
       if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
 
@@ -85,13 +85,15 @@ namespace FinalDynamicsChallenge.contactsPlugin
               Guid regardingobjectid = new Guid(context.OutputParameters["id"].ToString());
               string regardingobjectidType = "contact";
               contactTask["regardingobjectid"] = new EntityReference(regardingobjectidType, regardingobjectid);
+
+
               IOrganizationService service = localContext.OrganizationService;
               service.Create(contactTask);
 
 
 
             }
-            
+
           }
           catch (FaultException ex)
           {
