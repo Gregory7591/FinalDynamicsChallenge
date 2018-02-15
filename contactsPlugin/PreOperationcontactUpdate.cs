@@ -9,6 +9,7 @@
 //     Runtime Version:4.0.30319.1
 // </auto-generated>
 
+using System;
 using Microsoft.Xrm.Sdk;
 
 namespace FinalDynamicsChallenge.contactsPlugin
@@ -56,77 +57,29 @@ namespace FinalDynamicsChallenge.contactsPlugin
         throw new InvalidPluginExecutionException("localContext");
       }
 
-
       ITracingService tracingService = localContext.TracingService;
-      tracingService.Trace("Implemented tracing service succesfully!");
-
-      // Obtain the execution context from the service provider.
-
       IPluginExecutionContext context = localContext.PluginExecutionContext;
-      tracingService.Trace("1");
-
-      // Get a reference to the Organization service.
-
       IOrganizationService service = localContext.OrganizationService;
-      tracingService.Trace("2");
 
       if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
       {
-        tracingService.Trace("3");
-
-
-
-
-        Entity contact = (Entity)context.InputParameters["Target"];   //Get Target - includes everything changed
-        tracingService.Trace("4");
-
-
+        Entity contact = (Entity)context.InputParameters["Target"];
         Entity contactPreImage = (Entity)context.PreEntityImages["contactPreImage"];
 
-        //EntityImageCollection preAttributes = context.PreEntityImages;
-
-        //EntityImageCollection postAttributes = context.PostEntityImages;
-
-        tracingService.Trace("5");
-
-
-
-
-        int preInvestmentPeriodValue = contactPreImage.GetAttributeValue<int>("di_investmentperiod");
-        tracingService.Trace("6");
-        int targetInvestmentPeriodValue = contact.GetAttributeValue<int>("di_investmentperiod");
-        tracingService.Trace("7");
-
-
-
-        tracingService.Trace("Pre-Invest: " + preInvestmentPeriodValue.ToString() + " Post-Invest: " + targetInvestmentPeriodValue);
-        tracingService.Trace("8");
-
-
-        if (preInvestmentPeriodValue != targetInvestmentPeriodValue)
+        try
         {
-          tracingService.Trace("9");
+          int? investmentPeriod = contact.GetAttributeValue<int?>("di_investmentperiod") ?? contactPreImage.GetAttributeValue<int?>("di_investmentperiod");
+          decimal? initialInvestment = contact.GetAttributeValue<decimal?>("di_intialinvesmentfinal") ?? contactPreImage.GetAttributeValue<decimal?>("di_intialinvesmentfinal");
+          decimal? interestRate = contact.GetAttributeValue<decimal?>("di_interest_rate") ?? contactPreImage.GetAttributeValue<decimal?>("di_interest_rate");
+          decimal? rate = interestRate / 100;
 
-          decimal p = contact.GetAttributeValue<decimal>("di_intialinvesmentfinal");
-          tracingService.Trace("10");
-
-          decimal r = contact.GetAttributeValue<decimal>("di_interest_rate") / 100;
-          tracingService.Trace("11");
-
-          decimal t = (decimal)contact.GetAttributeValue<int>("di_investmentperiod");
-          tracingService.Trace("12");
-          contact["di_esitimatedreturnfinal"] = p * (1 + (r * t));
-          tracingService.Trace("13");
+          contact["di_esitimatedreturnfinal"] = initialInvestment * (1 + (rate * investmentPeriod));
         }
-
-
+        catch (Exception ex)
+        {
+          throw new InvalidPluginExecutionException("An error occured in the plugin:", ex);
+        }
       }
-
-
-
-
-
-
     }
   }
 }

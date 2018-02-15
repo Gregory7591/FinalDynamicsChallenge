@@ -57,15 +57,9 @@ namespace FinalDynamicsChallenge.contactsPlugin
       {
         throw new InvalidPluginExecutionException("localContext");
       }
-
-
+      IOrganizationService service = localContext.OrganizationService;
       IPluginExecutionContext context = localContext.PluginExecutionContext;
-
-
       if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
-
-
-
       {
         Entity entity = (Entity)context.InputParameters["Target"];
         if (entity.LogicalName != "contact" && context.MessageName != "Create")
@@ -74,26 +68,19 @@ namespace FinalDynamicsChallenge.contactsPlugin
         }
         else
         {
-
           try
           {
             Entity contactTask = new Entity("task");
             contactTask["subject"] = "First follow up meeting";
             contactTask["description"] = "This is a reminder for new users to set up a follow up meeting";
+
             if (context.OutputParameters.Contains("id"))
             {
               Guid regardingobjectid = new Guid(context.OutputParameters["id"].ToString());
               string regardingobjectidType = "contact";
               contactTask["regardingobjectid"] = new EntityReference(regardingobjectidType, regardingobjectid);
-
-
-              IOrganizationService service = localContext.OrganizationService;
               service.Create(contactTask);
-
-
-
             }
-
           }
           catch (FaultException ex)
           {

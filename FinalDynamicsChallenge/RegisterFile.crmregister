@@ -1,37 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Register xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/crm/2011/tools/pluginregistration">
   <Solutions>
-    <Solution Assembly="FinalDynamicsChallenge.contactsPlugin.dll" Id="c508db32-a62d-4d8d-93aa-1df7fec21337" IsolationMode="Sandbox" SourceType="Database">
+    <Solution Assembly="FinalDynamicsChallenge.contactsPlugin.dll" Id="a48a2399-8ec7-4bf1-a321-7de1f6c252ea" IsolationMode="Sandbox" SourceType="Database">
       <PluginTypes>
         <clear />
-        <Plugin Description="Plug-in to Create of contact" FriendlyName="Create of contact" Name="FinalDynamicsChallenge.contactsPlugin.PostOperationcontactCreateTasl" Id="00000000-0000-0000-0000-000000000000" TypeName="FinalDynamicsChallenge.contactsPlugin.PostOperationcontactCreateTasl">
+        <Plugin Description="Plug-in to Create of contact" FriendlyName="Create of contact" Name="FinalDynamicsChallenge.contactsPlugin.PreOperationcontactCreate" Id="bb477a1f-e694-49c8-a12a-bbdf238eeb4e" TypeName="FinalDynamicsChallenge.contactsPlugin.PreOperationcontactCreate">
           <Steps>
             <clear />
-            <Step AsyncAutoDelete="false" Name="Create of contact" Description="Create of contact" Id="00000000-0000-0000-0000-000000000000" ImpersonatingUserId="00000000-0000-0000-0000-000000000000" MessageName="Create" Mode="Synchronous" PrimaryEntityName="contact" Rank="1" Stage="PostOutsideTransaction" SupportedDeployment="ServerOnly" MessageEntityId="00000000-0000-0000-0000-000000000000">
+            <Step AsyncAutoDelete="false" Name="Create of contact" Description="Create of contact" Id="e47123d2-4612-e811-a952-000d3ab27013" ImpersonatingUserId="00000000-0000-0000-0000-000000000000" MessageName="Create" Mode="Synchronous" PrimaryEntityName="contact" Rank="1" Stage="PreInsideTransaction" SupportedDeployment="ServerOnly" MessageEntityId="00000000-0000-0000-0000-000000000000">
               <Images />
             </Step>
           </Steps>
         </Plugin>
-        <Plugin Description="Plug-in to Create of contact" FriendlyName="Create of contact" Name="FinalDynamicsChallenge.contactsPlugin.PreOperationcontactCreate" Id="0fb46dfe-c39f-485d-84e0-9516e9389968" TypeName="FinalDynamicsChallenge.contactsPlugin.PreOperationcontactCreate">
+        <Plugin Description="Plug-in to Create of contact" FriendlyName="Create of contact" Name="FinalDynamicsChallenge.contactsPlugin.PostOperationcontactCreate" Id="87411a80-9925-4db4-b7a7-3b92127e8797" TypeName="FinalDynamicsChallenge.contactsPlugin.PostOperationcontactCreate">
           <Steps>
             <clear />
-            <Step AsyncAutoDelete="false" Name="Create of contact" Description="Create of contact" Id="26dee935-c210-e811-a953-000d3ab27f6e" ImpersonatingUserId="00000000-0000-0000-0000-000000000000" MessageName="Create" Mode="Synchronous" PrimaryEntityName="contact" Rank="1" Stage="PreInsideTransaction" SupportedDeployment="ServerOnly" MessageEntityId="00000000-0000-0000-0000-000000000000">
+            <Step AsyncAutoDelete="false" Name="Create of contact" Description="Create of contact" Id="4bba16d4-4612-e811-a953-000d3ab27f6e" ImpersonatingUserId="00000000-0000-0000-0000-000000000000" MessageName="Create" Mode="Synchronous" PrimaryEntityName="contact" Rank="1" Stage="PostOutsideTransaction" SupportedDeployment="ServerOnly" MessageEntityId="00000000-0000-0000-0000-000000000000">
               <Images />
             </Step>
           </Steps>
         </Plugin>
-        <Plugin Description="Plug-in to Create of contact" FriendlyName="Create of contact" Name="FinalDynamicsChallenge.contactsPlugin.PostOperationcontactCreate" Id="59b11885-8c15-49d1-ab6b-c488c60fa670" TypeName="FinalDynamicsChallenge.contactsPlugin.PostOperationcontactCreate">
+        <Plugin Description="Plug-in to Update of contact" FriendlyName="Update of contact" Name="FinalDynamicsChallenge.contactsPlugin.PreOperationcontactUpdate" Id="948b9112-c4ed-4bea-a981-2465e23679f7" TypeName="FinalDynamicsChallenge.contactsPlugin.PreOperationcontactUpdate">
           <Steps>
             <clear />
-            <Step AsyncAutoDelete="false" Name="Create of contact" Description="Create of contact" Id="fa7248ab-c210-e811-a952-000d3ab27a43" ImpersonatingUserId="00000000-0000-0000-0000-000000000000" MessageName="Create" Mode="Synchronous" PrimaryEntityName="contact" Rank="1" Stage="PostOutsideTransaction" SupportedDeployment="ServerOnly" MessageEntityId="00000000-0000-0000-0000-000000000000">
-              <Images />
-            </Step>
-          </Steps>
-        </Plugin>
-        <Plugin Description="Plug-in to Update of contact" FriendlyName="Update of contact" Name="FinalDynamicsChallenge.contactsPlugin.PreOperationcontactUpdate" Id="a7c6ee4c-7f64-4096-bb1f-6f51da2a4b7f" TypeName="FinalDynamicsChallenge.contactsPlugin.PreOperationcontactUpdate">
-          <Steps>
-            <clear />
-            <Step AsyncAutoDelete="false" Name="Update of contact" Description="Update of contact" Id="895687ac-8011-e811-a956-000d3ab27f0e" ImpersonatingUserId="00000000-0000-0000-0000-000000000000" MessageName="Update" Mode="Synchronous" PrimaryEntityName="contact" Rank="1" Stage="PreInsideTransaction" SupportedDeployment="ServerOnly" MessageEntityId="00000000-0000-0000-0000-000000000000">
+            <Step AsyncAutoDelete="false" Name="Update of contact" Description="Update of contact" Id="37ac05dc-4612-e811-a952-000d3ab27a43" ImpersonatingUserId="00000000-0000-0000-0000-000000000000" MessageName="Update" Mode="Synchronous" PrimaryEntityName="contact" Rank="1" Stage="PreInsideTransaction" SupportedDeployment="ServerOnly" MessageEntityId="00000000-0000-0000-0000-000000000000">
               <Images>
                 <Image EntityAlias="contactPreImage" Id="7427b267-9211-e811-a953-000d3ab27d56" MessagePropertyName="Target" ImageType="PreImage" />
               </Images>

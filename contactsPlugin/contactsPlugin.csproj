@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PostOperationcontactCreate.cs" />
-    <Compile Include="PostOperationcontactCreateTasl.cs" />
     <Compile Include="PreOperationcontactCreate.cs" />
     <Compile Include="PreOperationcontactUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

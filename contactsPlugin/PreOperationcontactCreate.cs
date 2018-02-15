@@ -71,40 +71,26 @@ namespace FinalDynamicsChallenge.contactsPlugin
         {
           try
           {
-            // work out the age of client
-
-            tracingService.Trace("Contact Plugin: Working out age of contact");
-
             DateTime dateCurrent = DateTime.Now.Date;
             DateTime dateBirth = contact.GetAttributeValue<DateTime>("birthdate");
+            decimal principal = contact.GetAttributeValue<decimal>("di_intialinvesmentfinal");
+            decimal rate = contact.GetAttributeValue<decimal>("di_interest_rate") / 100;
+            decimal time = (decimal)contact.GetAttributeValue<int>("di_investmentperiod");
 
             int dateDiff = dateCurrent.Month - dateBirth.Month;
 
             if (dateDiff > -1)
             {
               contact["di_age"] = dateCurrent.Year - dateBirth.Year;
-
             }
             else
+            {
               contact["di_age"] = dateCurrent.Year - dateBirth.Year - 1;
-
-            tracingService.Trace("Contact Plugin: Age of contact worked out");
-
+            }
 
             contact["di_joining_date"] = DateTime.Now.Date;
-
-            tracingService.Trace("Contact Plugin: Working out maturity date");
-
-            //work out the maturity date assming joining date is the date account created
             contact["di_maturity_date"] = DateTime.Now.Date.AddMonths((int)(contact["di_investmentperiod"]));
-
-            tracingService.Trace("Contact Plugin: Maturity date worked out");
-            decimal p = contact.GetAttributeValue<decimal>("di_intialinvesmentfinal");
-
-            decimal r = contact.GetAttributeValue<decimal>("di_interest_rate") / 100;
-
-            decimal t = (decimal)contact.GetAttributeValue<int>("di_investmentperiod");
-            contact["di_esitimatedreturnfinal"] = p * (1 + (r * t));
+            contact["di_esitimatedreturnfinal"] = principal * (1 + (rate * time));
           }
           catch (Exception ex)
           {
