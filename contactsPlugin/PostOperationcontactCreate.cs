@@ -59,6 +59,7 @@ namespace FinalDynamicsChallenge.contactsPlugin
       }
       IOrganizationService service = localContext.OrganizationService;
       IPluginExecutionContext context = localContext.PluginExecutionContext;
+
       if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
       {
         Entity entity = (Entity)context.InputParameters["Target"];

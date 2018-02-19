@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="calculations.cs" />
     <Compile Include="PostOperationcontactCreate.cs" />
     <Compile Include="PreOperationcontactCreate.cs" />
     <Compile Include="PreOperationcontactUpdate.cs" />

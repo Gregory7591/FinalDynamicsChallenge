@@ -56,8 +56,7 @@ namespace FinalDynamicsChallenge.contactsPlugin
       {
         throw new InvalidPluginExecutionException("localContext");
       }
-
-      ITracingService tracingService = localContext.TracingService;
+      Calculations instance = new Calculations();
       IPluginExecutionContext context = localContext.PluginExecutionContext;
 
       if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
@@ -71,11 +70,12 @@ namespace FinalDynamicsChallenge.contactsPlugin
         {
           try
           {
+
             DateTime dateCurrent = DateTime.Now.Date;
             DateTime dateBirth = contact.GetAttributeValue<DateTime>("birthdate");
-            decimal principal = contact.GetAttributeValue<decimal>("di_intialinvesmentfinal");
-            decimal rate = contact.GetAttributeValue<decimal>("di_interest_rate") / 100;
-            decimal time = (decimal)contact.GetAttributeValue<int>("di_investmentperiod");
+            decimal initialInvestment = contact.GetAttributeValue<decimal>("di_intialinvesmentfinal");
+            decimal interestRate = contact.GetAttributeValue<decimal>("di_interest_rate") / 100;
+            int investmentPeriod = contact.GetAttributeValue<int>("di_investmentperiod");
 
             int dateDiff = dateCurrent.Month - dateBirth.Month;
 
@@ -90,7 +90,8 @@ namespace FinalDynamicsChallenge.contactsPlugin
 
             contact["di_joining_date"] = DateTime.Now.Date;
             contact["di_maturity_date"] = DateTime.Now.Date.AddMonths((int)(contact["di_investmentperiod"]));
-            contact["di_esitimatedreturnfinal"] = principal * (1 + (rate * time));
+
+            contact["di_esitimatedreturnfinal"] = instance.CalculateAge(initialInvestment, interestRate, investmentPeriod);
           }
           catch (Exception ex)
           {

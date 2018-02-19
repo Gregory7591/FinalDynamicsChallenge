@@ -44,9 +44,14 @@
     <Folder Include="WebResources" />
   </ItemGroup>
   <ItemGroup>
-    <CRMWebResource Include="WebResources\Script %28JScript%29\contact.js">
-      <DisplayName>contact</DisplayName>
-      <UniqueName>di_contact</UniqueName>
+    <CRMWebResource Include="WebResources\Script %28JScript%29\onChangeCalcAge.js">
+      <DisplayName>onChangeCalcAge</DisplayName>
+      <UniqueName>di_onChangeCalcAge</UniqueName>
+      <WebResourceType>Script</WebResourceType>
+    </CRMWebResource>
+    <CRMWebResource Include="WebResources\Script %28JScript%29\onLoadPrefMethodContact.js">
+      <DisplayName>onLoadPrefMethodContact</DisplayName>
+      <UniqueName>di_onLoadPrefMethodContact</UniqueName>
       <WebResourceType>Script</WebResourceType>
     </CRMWebResource>
     <CRMWebResource Include="WebResources\Script %28JScript%29\prefMethodContact.js">
