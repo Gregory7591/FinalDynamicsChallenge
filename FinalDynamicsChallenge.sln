@@ -12,10 +12,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "contactsPlugin", "contactsP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "contactsWorkflows", "contactsWorkflows\contactsWorkflows.csproj", "{513B24B4-037C-40FC-889B-39B2619BB6DC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C7BF7698-67A6-4C99-9E2C-4B38C7B07BFD}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\AppData\Roaming\MscrmTools\XrmToolBox\Settings\CrmSvcUtil Ref\Entities.cs = ..\..\..\..\AppData\Roaming\MscrmTools\XrmToolBox\Settings\CrmSvcUtil Ref\Entities.cs
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Singular.Xrm", "Singular.Xrm", "{B38C2866-383B-4764-AB72-72E8537AA062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalDynamicsChallenge.Singular", "FinalDynamicsChallenge.Singular\FinalDynamicsChallenge.Singular.csproj", "{82FEAC08-39AE-4ACF-9B42-A6D982E0FFE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmPackage.Singular.PostBuild", "Singular.Xrm\Singular.Xrm\CrmPackage.Singular.PostBuild\CrmPackage.Singular.PostBuild.csproj", "{175D84FF-DFBF-4628-95D3-F8D4BC356BB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneXrm.Generator", "Singular.Xrm\Singular.Xrm\OneXrm.Generator\OneXrm.Generator.csproj", "{D6716079-CC08-4ED4-91C2-3F859CB6044C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singular.Xrm", "Singular.Xrm\Singular.Xrm\Singular.Xrm\Singular.Xrm.csproj", "{F1972448-5E90-485E-9990-6254B7D7A8E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,9 +42,30 @@ Global
 		{513B24B4-037C-40FC-889B-39B2619BB6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{513B24B4-037C-40FC-889B-39B2619BB6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{513B24B4-037C-40FC-889B-39B2619BB6DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82FEAC08-39AE-4ACF-9B42-A6D982E0FFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82FEAC08-39AE-4ACF-9B42-A6D982E0FFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82FEAC08-39AE-4ACF-9B42-A6D982E0FFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82FEAC08-39AE-4ACF-9B42-A6D982E0FFE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{175D84FF-DFBF-4628-95D3-F8D4BC356BB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{175D84FF-DFBF-4628-95D3-F8D4BC356BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{175D84FF-DFBF-4628-95D3-F8D4BC356BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{175D84FF-DFBF-4628-95D3-F8D4BC356BB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6716079-CC08-4ED4-91C2-3F859CB6044C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6716079-CC08-4ED4-91C2-3F859CB6044C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6716079-CC08-4ED4-91C2-3F859CB6044C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6716079-CC08-4ED4-91C2-3F859CB6044C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1972448-5E90-485E-9990-6254B7D7A8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1972448-5E90-485E-9990-6254B7D7A8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1972448-5E90-485E-9990-6254B7D7A8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1972448-5E90-485E-9990-6254B7D7A8E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{175D84FF-DFBF-4628-95D3-F8D4BC356BB1} = {B38C2866-383B-4764-AB72-72E8537AA062}
+		{D6716079-CC08-4ED4-91C2-3F859CB6044C} = {B38C2866-383B-4764-AB72-72E8537AA062}
+		{F1972448-5E90-485E-9990-6254B7D7A8E7} = {B38C2866-383B-4764-AB72-72E8537AA062}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A6DCD6A-18AB-4723-825A-45AA0DB7CE3E}

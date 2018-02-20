@@ -10,8 +10,9 @@
 // </auto-generated>
 
 using System;
-using Microsoft.Xrm.Sdk;
+using CrmCalculations;
 using CrmEarlyBound;
+using Microsoft.Xrm.Sdk;
 
 namespace FinalDynamicsChallenge.contactsPlugin
 {
@@ -35,18 +36,17 @@ namespace FinalDynamicsChallenge.contactsPlugin
 
       if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
       {
-        
-        Contact contact = (Contact)context.InputParameters["Target"];
-        Entity contactPreImage = (Entity)context.PreEntityImages["contactPreImage"];
+        Entity entity = (Entity)context.PreEntityImages["Target"];
+        Contact contact = entity.ToEntity<Contact>();
+        Entity preEntity = (Entity)context.PreEntityImages["contactPreImage"];
+        Contact preContact = preEntity.ToEntity<Contact>();
 
         try
         {
-          int? investmentPeriod = contact.GetAttributeValue<int?>("di_investmentperiod") ?? contactPreImage.GetAttributeValue<int?>("di_investmentperiod");
-          decimal? initialInvestment = contact.GetAttributeValue<decimal?>("di_intialinvesmentfinal") ?? contactPreImage.GetAttributeValue<decimal?>("di_intialinvesmentfinal");
-          decimal? interestRate = contact.GetAttributeValue<decimal?>("di_interest_rate") ?? contactPreImage.GetAttributeValue<decimal?>("di_interest_rate");
-          decimal? rate = interestRate / 100;
-
-          //contact["di_esitimatedreturnfinal"] = CalculateAge(initialInvestment, rate, investmentPeriod);
+          Calculations calc = new Calculations();
+          contact.di_age = calc.CalculateAge(contact, preContact);
+          contact.di_EsitimatedReturnFinal = calc.CalculateEstReturn(contact, preContact);
+          contact.di_maturity_date = calc.CalculateMaturityDate(contact, preContact);
         }
         catch (Exception ex)
         {

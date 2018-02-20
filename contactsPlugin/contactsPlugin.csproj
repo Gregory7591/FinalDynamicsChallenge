@@ -73,13 +73,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="calculations.cs" />
-    <Compile Include="Entities.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="CrmServiceContext.cs" />
     <Compile Include="OptionSets.cs" />
     <Compile Include="PostOperationcontactCreate.cs" />
     <Compile Include="PreOperationcontactCreate.cs" />
     <Compile Include="PreOperationcontactUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PluginBase.cs" />
+    <Compile Include="Task.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="contactKey.snk" />
@@ -98,6 +100,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Singular.Xrm\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

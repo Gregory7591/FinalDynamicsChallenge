@@ -68,8 +68,9 @@ namespace FinalDynamicsChallenge.contactsPlugin
         try
         {
           Calculations calc = new Calculations();
-          //calc.CalculateAge(contact, null);
+          contact.di_age = calc.CalculateAge(contact, null);
           contact.di_EsitimatedReturnFinal = calc.CalculateEstReturn(contact, null);
+          contact.di_maturity_date = calc.CalculateMaturityDate(contact, null);
         }
         catch (Exception ex)
         {

@@ -12,6 +12,7 @@
 using System;
 using System.ServiceModel;
 using Microsoft.Xrm.Sdk;
+using CrmEarlyBound;
 
 
 
@@ -76,15 +77,16 @@ namespace FinalDynamicsChallenge.contactsPlugin
           try
 
           {
-            Entity contactTask = new Entity("task");
-            contactTask["subject"] = "First follow up meeting";
-            contactTask["description"] = "This is a reminder for new users to set up a follow up meeting";
+            Task contactTask = new Task();
+            
+            contactTask.Subject = "First follow up meeting";
+            contactTask.Description = "This is a reminder for new users to set up a follow up meeting";
 
             if (context.OutputParameters.Contains("id"))
             {
               Guid regardingobjectid = new Guid(context.OutputParameters["id"].ToString());
               string regardingobjectidType = "contact";
-              contactTask["regardingobjectid"] = new EntityReference(regardingobjectidType, regardingobjectid);
+              contactTask.RegardingObjectId = new EntityReference(regardingobjectidType, regardingobjectid);
               service.Create(contactTask);
             }
           }
