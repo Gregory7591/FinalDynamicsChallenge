@@ -11,6 +11,7 @@
 
 using System;
 using Microsoft.Xrm.Sdk;
+using CrmEarlyBound;
 
 namespace FinalDynamicsChallenge.contactsPlugin
 {
@@ -25,9 +26,6 @@ namespace FinalDynamicsChallenge.contactsPlugin
     }
     protected override void ExecuteCrmPlugin(LocalPluginContext localContext)
     {
-      Calculations instance = new Calculations();
-
-
       if (localContext == null)
       {
         throw new InvalidPluginExecutionException("localContext");
@@ -37,7 +35,8 @@ namespace FinalDynamicsChallenge.contactsPlugin
 
       if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
       {
-        Entity contact = (Entity)context.InputParameters["Target"];
+        
+        Contact contact = (Contact)context.InputParameters["Target"];
         Entity contactPreImage = (Entity)context.PreEntityImages["contactPreImage"];
 
         try
@@ -47,7 +46,7 @@ namespace FinalDynamicsChallenge.contactsPlugin
           decimal? interestRate = contact.GetAttributeValue<decimal?>("di_interest_rate") ?? contactPreImage.GetAttributeValue<decimal?>("di_interest_rate");
           decimal? rate = interestRate / 100;
 
-          contact["di_esitimatedreturnfinal"] = instance.CalculateAge(initialInvestment, rate, investmentPeriod);
+          //contact["di_esitimatedreturnfinal"] = CalculateAge(initialInvestment, rate, investmentPeriod);
         }
         catch (Exception ex)
         {

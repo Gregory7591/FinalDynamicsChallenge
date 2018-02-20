@@ -13,6 +13,8 @@ using System;
 using System.ServiceModel;
 using Microsoft.Xrm.Sdk;
 
+
+
 namespace FinalDynamicsChallenge.contactsPlugin
 {
 
@@ -62,6 +64,8 @@ namespace FinalDynamicsChallenge.contactsPlugin
 
       if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
       {
+
+
         Entity entity = (Entity)context.InputParameters["Target"];
         if (entity.LogicalName != "contact" && context.MessageName != "Create")
         {
@@ -70,6 +74,7 @@ namespace FinalDynamicsChallenge.contactsPlugin
         else
         {
           try
+
           {
             Entity contactTask = new Entity("task");
             contactTask["subject"] = "First follow up meeting";

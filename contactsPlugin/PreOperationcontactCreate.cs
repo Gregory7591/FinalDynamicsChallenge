@@ -10,6 +10,8 @@
 // </auto-generated>
 
 using System;
+using CrmCalculations;
+using CrmEarlyBound;
 using Microsoft.Xrm.Sdk;
 
 namespace FinalDynamicsChallenge.contactsPlugin
@@ -56,48 +58,24 @@ namespace FinalDynamicsChallenge.contactsPlugin
       {
         throw new InvalidPluginExecutionException("localContext");
       }
-      Calculations instance = new Calculations();
+
       IPluginExecutionContext context = localContext.PluginExecutionContext;
 
       if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
       {
-        Entity contact = (Entity)context.InputParameters["Target"]; // creating entity
-        if (contact.LogicalName != "contact" && context.MessageName != "Create") // This confirms that this is an contact type
+        Entity entity = (Entity)context.InputParameters["Target"];
+        Contact contact = entity.ToEntity<Contact>();
+        try
         {
-          return;
+          Calculations calc = new Calculations();
+          //calc.CalculateAge(contact, null);
+          contact.di_EsitimatedReturnFinal = calc.CalculateEstReturn(contact, null);
         }
-        else
+        catch (Exception ex)
         {
-          try
-          {
-
-            DateTime dateCurrent = DateTime.Now.Date;
-            DateTime dateBirth = contact.GetAttributeValue<DateTime>("birthdate");
-            decimal initialInvestment = contact.GetAttributeValue<decimal>("di_intialinvesmentfinal");
-            decimal interestRate = contact.GetAttributeValue<decimal>("di_interest_rate") / 100;
-            int investmentPeriod = contact.GetAttributeValue<int>("di_investmentperiod");
-
-            int dateDiff = dateCurrent.Month - dateBirth.Month;
-
-            if (dateDiff > -1)
-            {
-              contact["di_age"] = dateCurrent.Year - dateBirth.Year;
-            }
-            else
-            {
-              contact["di_age"] = dateCurrent.Year - dateBirth.Year - 1;
-            }
-
-            contact["di_joining_date"] = DateTime.Now.Date;
-            contact["di_maturity_date"] = DateTime.Now.Date.AddMonths((int)(contact["di_investmentperiod"]));
-
-            contact["di_esitimatedreturnfinal"] = instance.CalculateAge(initialInvestment, interestRate, investmentPeriod);
-          }
-          catch (Exception ex)
-          {
-            throw new InvalidPluginExecutionException("the wrong msg", ex);
-          }
+          throw new InvalidPluginExecutionException("the wrong msg", ex);
         }
+
       }
     }
   }

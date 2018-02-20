@@ -3,14 +3,13 @@
   
   var currentDate = new Date();
   var birthDate = Xrm.Page.getAttribute('birthdate').getValue();
-  window.alert(birthDate);
-  var dateDiff = currentDate.getMonth() - birthDate.Month();
+  var dateDiff = currentDate.getMonth() - birthDate.getMonth();
 
   if (dateDiff > -1) {
-    Xrm.Page.getAttribute('di_age').setValue(currentDate.getFullYear - birthDate.getFullYear);
+    Xrm.Page.getAttribute('di_age').setValue(currentDate.getFullYear() - birthDate.getFullYear());
   }
   else {
-    Xrm.Page.getAttribute('di_age').setValue(currentDate.getFullYear - birthDate.getFullYear - 1);
+    Xrm.Page.getAttribute('di_age').setValue(currentDate.getFullYear() - birthDate.getFullYear() - 1);
   }
  
 }
